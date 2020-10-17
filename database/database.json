@@ -1,0 +1,39 @@
+{
+    "subject":[
+        {"06016366":{
+            "name":"IMAGE PROCESSING",
+            "teacher":[{"name":"ผศ.ดร.กันต์พงษ์ วรรัตน์ปัญญา","comment":["ดีมาก"]}]
+            }
+        },
+        {"06016387":{
+            "name":"SPECIAL TOPICS IN MULTIMEDIA AND GAME DEVELOPMENT 1 (Data Compression)",
+            "teacher":[{"name":"ผศ.ดร.กันต์พงษ์ วรรัตน์ปัญญา","comment":[]}]
+            }
+        },
+        {"06016389":{
+            "name":"SPECIAL TOPICS IN INFORMATION TECHNOLOGY 1",
+            "teacher":[{"name":"","comment":[]}]
+            }
+        },
+        {"06016365":{
+            "name":"COMPUTER VISION",
+            "teacher":[{"name":"ผศ.ดร.สมเกียรติ วังศิริพิทักษ์","comment":[]}]
+            }
+        },
+        {"06016383":{
+            "name":"SPECIAL TOPICS IN SOFTWARE ENGINEERING (RPA)",
+            "teacher":[{"name":"รศ.ดร.ธีรพงศ์ ลีลานุภาพ","comment":[]},{"name":"ผศ.ดร.กนกวรรณ อัจฉริยะชาญวณิช","comment":[]}]
+            }
+        },
+        {"06016390":{
+            "name":"SPECIAL TOPICS IN INFORMATION TECHNOLOGY 2 (FINANCIAL ACCOUNTING)",
+            "teacher":[{"name":"ผศ.ศรีนวล นลินทิพยวงศ์","comment":[]}]
+            }
+        }
+    ],  
+    "user":[
+        {"username":"joe","password":"1234"},
+        {"username":"fah","password":"1234"},
+        {"username":"poon","password":"1234"}
+    ]
+}
