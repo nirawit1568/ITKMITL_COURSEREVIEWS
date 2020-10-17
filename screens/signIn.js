@@ -12,7 +12,9 @@ import {
 } from "react-native";
 
 import pic from "../assets/signin.png";
+
 import * as firebase from "firebase";
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyBVVoujZZZ4ywJtktg3fOJaodTuWb5rcHY",
@@ -33,15 +35,13 @@ const SignIn = (props) => {
   const [username,setUsername] = useState();
   const [password,setPassword] = useState();
 
-  
-
   const onPressLogin = () => {
     firebase.database().ref("user").on("value",(data)=>{
       for(var i=0;i<data.val().length;i++){
         if(data.val()[i].username == username){
           if(data.val()[i].password == password){
-            props.navigation.navigate("home",{'user_id':data.val()[i]})
-            Alert.alert("Login Success");
+            props.onStartApp(true);
+            props.person(data.val()[i].std_id);
           }
           else{
             Alert.alert("Password was wrong");
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   pic: {
     width: "70%",
     height:"40%"
-  }
+  },
+
 });
 export default SignIn;
