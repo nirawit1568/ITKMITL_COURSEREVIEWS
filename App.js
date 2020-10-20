@@ -12,9 +12,6 @@ export default function App() {
   const loginHandler = (status) => {
     setLogin(status);
   }
-  const logoutHandler = (status) => {
-    setLogin(status); 
-  }
   const person = (std_id) => {
     setStd_id(std_id);
   }
@@ -23,7 +20,7 @@ export default function App() {
     content = <SignIn onStartApp={loginHandler} person={person}/>
   }
   else if(login==true){
-    content = <Home endApp={logoutHandler} std_id={std_id}/>
+    content = <Home endApp={loginHandler} std_id={std_id}/>
   }
 
 

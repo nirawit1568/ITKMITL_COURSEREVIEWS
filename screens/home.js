@@ -46,6 +46,7 @@ class home extends React.Component{
         }
     }
 
+    //add data from firebase to state subject:[]
     componentDidMount() {
         firebase.database().ref("subject").on('value', snapshot => {
           let data = snapshot.val();
@@ -55,6 +56,7 @@ class home extends React.Component{
         
       }
 
+    //renderItem from Flatlist
     renderItem = (item) => {
     return(
         <TouchableOpacity style={styles.details}>
@@ -65,10 +67,9 @@ class home extends React.Component{
     );
   }
 
+    //when search 
     search = () => {
-
       var data = this.state.subject;
-
       if (this.state.text==""){
         this.setState({status_search:false})
       }

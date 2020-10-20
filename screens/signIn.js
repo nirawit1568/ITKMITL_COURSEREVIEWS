@@ -35,13 +35,14 @@ const SignIn = (props) => {
   const [username,setUsername] = useState();
   const [password,setPassword] = useState();
 
+  //When press login button
   const onPressLogin = () => {
     firebase.database().ref("user").on("value",(data)=>{
       for(var i=0;i<data.val().length;i++){
         if(data.val()[i].username == username){
           if(data.val()[i].password == password){
-            props.onStartApp(true);
             props.person(data.val()[i].std_id);
+            props.onStartApp(true);
           }
           else{
             Alert.alert("Password was wrong");
@@ -50,6 +51,7 @@ const SignIn = (props) => {
       }
     });
   };
+  //when press register
   const onPressRegister = () => {
     Alert.alert("Register.");
   };
