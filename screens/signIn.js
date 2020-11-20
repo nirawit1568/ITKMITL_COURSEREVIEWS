@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import React,{useState} from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,67 +6,76 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  Image,
   Alert,
-  Image
 } from "react-native";
 
-import pic from "../assets/signin.png";
+import ImgSignIn from "../assets/SignIn.png";
 
 import * as firebase from "firebase";
 
-
 var firebaseConfig = {
-  apiKey: "AIzaSyBVVoujZZZ4ywJtktg3fOJaodTuWb5rcHY",
-  authDomain: "itkmitl-coursereviews-6c92e.firebaseapp.com",
-  databaseURL: "https://itkmitl-coursereviews-6c92e.firebaseio.com",
-  projectId: "itkmitl-coursereviews-6c92e",
-  storageBucket: "itkmitl-coursereviews-6c92e.appspot.com",
-  messagingSenderId: "86142338526",
-  appId: "1:86142338526:web:275590aa6d38c5978d094f",
-  measurementId: "G-GR6QTPGP6Z"
+  apiKey: "AIzaSyBl1cjx2N5tP2vx70kGcmVd7-dnKTRmWdE",
+  authDomain: "coursereview-itkmitl.firebaseapp.com",
+  databaseURL: "https://coursereview-itkmitl.firebaseio.com",
+  projectId: "coursereview-itkmitl",
+  storageBucket: "coursereview-itkmitl.appspot.com",
+  messagingSenderId: "40812640422",
+  appId: "1:40812640422:web:fc4c58257c6390db515c67",
+  measurementId: "G-0TSDMPJ93K",
 };
+
 // Initialize Firebase
-if (firebase.apps.length==0){
+if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
 
 const SignIn = (props) => {
-  const [username,setUsername] = useState();
-  const [password,setPassword] = useState();
+  const [isUsername, setUsername] = useState();
+  const [isPassword, setPassword] = useState();
 
   //When press login button
-  const onPressLogin = () => {
-    firebase.database().ref("user").on("value",(data)=>{
-      for(var i=0;i<data.val().length;i++){
-        if(data.val()[i].username == username){
-          if(data.val()[i].password == password){
-            props.person(data.val()[i].std_id);
-            props.onStartApp(true);
-          }
-          else{
-            Alert.alert("Password was wrong");
-          }
-        }
-      }
-    });
+  const onPressSignIn = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(isUsername, isPassword)
+      .then((res) => {
+        console.log(res["user"]["uid"]);
+        console.log("User logged-in successfully!");
+        props.onStartApp(1);
+      });
   };
+
   //when press register
-  const onPressRegister = () => {
-    Alert.alert("Register.");
+  const onPressSignUp = () => {
+    props.onStartApp(2);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header1}>Sign in</Text>
+      <Text style={styles.header1}>SignIn</Text>
       <Text style={styles.header2}>IT KMITL COURSE REVIEW</Text>
-      <Image style={styles.pic} source={pic}></Image>
-      <TextInput style={styles.box} placeholder="Username" onChangeText={(text)=>setUsername(text)}></TextInput>
-      <TextInput secureTextEntry={true} style={styles.box} placeholder="Password" onChangeText={(text)=>setPassword(text)}></TextInput>
-      <Button style={styles.btn} title="LOGIN" color="gold" onPress={() => onPressLogin()}></Button>
-      <TouchableOpacity onPress={() => onPressRegister()}>
-        <Text style={{ color: "white", fontSize: 15 }}>Register Now !</Text>
+      <Image style={styles.img} source={ImgSignIn} />
+      <TextInput
+        style={styles.box}
+        placeholder="Username"
+        onChangeText={(text) => setUsername(text)}
+      />
+      <TextInput
+        secureTextEntry={true}
+        style={styles.box}
+        placeholder="Password"
+        onChangeText={(text) => setPassword(text)}
+      />
+      <Button
+        style={styles.btn}
+        title="Login"
+        color="gold"
+        onPress={() => onPressSignIn()}
+      />
+      <TouchableOpacity onPress={() => onPressSignUp()}>
+        <Text style={{ color: "white", fontSize: 15 }}>Register</Text>
       </TouchableOpacity>
-      <StatusBar style="auto" />
     </View>
   );
 };
@@ -75,7 +83,6 @@ const SignIn = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "space-evenly",
     backgroundColor: "#E5CCFF",
@@ -88,16 +95,16 @@ const styles = StyleSheet.create({
   },
   box: {
     borderWidth: 0.5,
-    borderRadius:15,
+    borderRadius: 15,
     height: 50,
     width: 300,
     backgroundColor: "white",
     textAlign: "center",
   },
-  pic: {
+  img: {
     width: "70%",
-    height:"40%"
+    height: "40%",
   },
-
 });
+
 export default SignIn;
