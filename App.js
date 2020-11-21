@@ -2,36 +2,45 @@ import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 
-import SignIn from "./screens/SignIn";
-import Home from "./screens/Home";
+import SignIn from "./screens/signIn";
+import Home from "./screens/home";
 import SignUp from "./screens/SignUp";
 import Subject from "./screens/Subject";
+import Comments from "./screens/comments";
 
 export default function App() {
   const [login,setLogin] = useState(0);
-  const [std_id,setStd_id] = useState(0);
   const [isSubject,setSubject] = useState(0);
+  const [isTeacher,setTeacher] = useState(0);
+  const [isSubjectname,setSubjectname] = useState(0);
   let content;
 
   const loginHandler = (status) => {
     setLogin(status);
   }
-  const person = (std_id) => {
-    setStd_id(std_id);
-  }
+
   const subject = (id) => {
-    console.log(id);
     setSubject(id);
   }
 
+  const teacher = (name) => {
+    setTeacher(name);
+  }
+
+  const subject_name = (name) => {
+    setSubjectname(name);
+  }
+
   if (login === 0) {
-    content = <SignIn onStartApp={loginHandler} person={person} />;
+    content = <SignIn onStartApp={loginHandler} />;
   } else if (login === 1) {
-    content = <Home onStartApp={loginHandler} std_id={std_id} subject={subject} />;
+    content = <Home onStartApp={loginHandler} subject={subject} />;
   } else if (login === 2) {
-    content = <SignUp />;
+    content = <SignUp onStartApp={loginHandler}/>;
   } else if (login === 3) {
-    content = <Subject onStartApp={loginHandler} subject={isSubject} />;
+    content = <Subject onStartApp={loginHandler} subject={isSubject} subject_name={subject_name} teacher_no={teacher}/>;
+  } else if (login === 4) {
+    content = <Comments onStartApp={loginHandler} subject={isSubject} subject_name={isSubjectname} teacher={isTeacher}/>;
   }
 
   return (

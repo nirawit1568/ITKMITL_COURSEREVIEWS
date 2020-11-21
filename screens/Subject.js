@@ -14,6 +14,11 @@ import {
 import * as firebase from "firebase";
 
 import pic from "../assets/รูปภาพ3.png";
+import backlogo from "../assets/back.png"
+import signout from "../assets/SignOut.png";
+import { render } from "react-dom";
+import boy from "../assets/boy.png";
+import girl from "../assets/woman.png"
 
 var firebaseConfig = {
   apiKey: "AIzaSyBl1cjx2N5tP2vx70kGcmVd7-dnKTRmWdE",
@@ -31,74 +36,164 @@ if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const Subject = () => {
-  //firebase
-  //  .database()
-  //  .ref("subject")
-  //  .on("value", (snapshot) => {
-  //    let data = snapshot.val();
-  //    let items = Object.values(data);
-  //    setSubject(items);
-  //  });
+class Subject extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      allsubject: [],
+      subject_id: props.subject,
+      subject_name: "",
+      teacher: [],
+      description: "",
+      backpage: props.onStartApp,
+      teacher_name: props.teacher_no,
+      sbj_name:props.subject_name
+    };
+  }
 
-  //const [isSubject, setSubject] = useState();
-  //const [isSubjectId, setSubjectId] = useState();
-  //const [isSubjectName, setSubjectName] = useState();
-  //const [isTeacherName, setTeacher] = useState();
-  //const [isDescription, setDescription] = useState();
+  componentDidMount() {
+    firebase
+    .database()
+    .ref("subject")
+    .on("value", (snapshot) => {
+      let data = snapshot.val();
+      let items = Object.values(data);
+      this.setState({allsubject:items})
+    });
 
-  //console.log(isSubject);
+  }
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.top}>
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.header}>About Subject</Text>
+  back = () => {
+    this.state.backpage(1)
+  }
+  
+  logout = () => {
+    this.state.backpage(0)
+  }
+
+  teacher_select = (name) => {
+    this.state.teacher_name(name)
+    this.state.sbj_name(this.state.subject_name)
+    this.state.backpage(4)
+  }
+
+  renderItem = (item) => {
+    //render subject from subject select
+    if (this.state.subject_id == item.item.subject_id){
+      var score1 = 0;
+      var score2 = 0;
+      //calculate score
+      for (let i=0;i<item.item.teacher.length;i++){
+        for(let j=0;j<item.item.teacher[i].score.length;j++){
+          if(i==0){
+            score1 = score1 + item.item.teacher[i].score[j];
+          }
+          else{
+            score2 = score2 + item.item.teacher[i].score[j];
+          }
+        }
+
+      }
+      this.setState({subject_name:item.item.name})
+      this.setState({description:item.item.description})
+
+      //render subject for 1 teacher
+      if(item.item.teacher.length == 1){
+        return(
+          <TouchableOpacity style={styles.details} onPress={() => this.teacher_select(item.item.teacher[0].name)}>
+            <View style={{flexDirection:"row",alignItems:"center"}}>
+              <Image source={boy} style={{width:120,height:140}}></Image>
+                <View style={{flexDirection:"column"}}>
+                  <Text style={{fontSize:17,width:"65%",marginVertical:10}}>{"อาจารย์ : " + item.item.teacher[0].name}</Text>
+                  <Text style={{fontSize:17,width:"65%"}}>{"คะแนน : " + (score1/item.item.teacher[0].score.length).toFixed(1) + "/5.0"}</Text>
+                </View>
+            </View>
+          </TouchableOpacity>
+        )
+      }
+      //render subject for 2 teachers
+      else if(item.item.teacher.length == 2){
+        return(
+        <View>
+          <TouchableOpacity style={styles.details} onPress={() => this.teacher_select(item.item.teacher[0].name)}>
+          <View style={{flexDirection:"row",alignItems:"center"}}>
+              <Image source={boy} style={{width:120,height:140}}></Image>
+                <View style={{flexDirection:"column"}}>
+                  <Text style={{fontSize:17,width:"65%",marginVertical:10}}>{"อาจารย์ : " + item.item.teacher[0].name}</Text>
+                  <Text style={{fontSize:17,width:"65%"}}>{"คะแนน : "+ (score1/item.item.teacher[0].score.length).toFixed(1) +"/5.0"}</Text>
+                </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.details} onPress={() => this.teacher_select(item.item.teacher[1].name)}>
+          <View style={{flexDirection:"row",alignItems:"center"}}>
+              <Image source={girl} style={{width:120,height:140}}></Image>
+                <View style={{flexDirection:"column"}}>
+                  <Text style={{fontSize:17,width:"65%",marginVertical:10}}>{"อาจารย์ : " + item.item.teacher[1].name}</Text>
+                  <Text style={{fontSize:17,width:"65%"}}>{"คะแนน : "+ (score2/item.item.teacher[1].score.length).toFixed(1) +"/5.0"}</Text>
+                </View>
+            </View>
+          </TouchableOpacity>
+        </View>
+        )
+      }
+    }
+  };
+
+  render(){
+    return (
+      <View style={styles.container}>
+        <View style={styles.top}>
+          <View style={{ flexDirection: "row" }}>
+            <View style={styles.head}>
+              <TouchableOpacity onPress={this.back}>
+                <Image source={backlogo} style={{width:50,height:50,marginLeft:20}}/>
+              </TouchableOpacity>
+              <Text style={styles.header}>About Subject</Text>
+              <TouchableOpacity
+                onPress={this.logout}
+              >
+                <Image source={signout} style={{width:60,height:55,marginTop:10,marginLeft:60}}></Image>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={{ flexDirection: "row", alignItems: "center", height: "60%", }}>
+            <Image style={styles.pic} source={pic}></Image>
+            <View style={styles.aboutsubject}>
+              <Text style={styles.abouttext}>รหัสวิชา : {this.state.subject_id}</Text>
+              <Text style={styles.abouttext}>ชื่อวิชา : {this.state.subject_name}</Text>
+              <Text style={styles.abouttext}>คณะ : เทคโนโลยีสารสนเทศ </Text>
+              <Text style={styles.abouttext}>รายละเอียดวิชา : {this.state.description}</Text>
+            </View>
           </View>
         </View>
-        <View style={{ flexDirection: "row", alignItems: "center", height: "50%", }}>
-          <Image style={styles.pic} source={pic}></Image>
-          <View style={{ margin: 10 }}>
-            <Text>รหัสวิชา : </Text>
-            <Text>ชื่อวิชา : </Text>
-            <Text>อาจารย์ : </Text>
-            <Text>รายละเอียด : </Text>
-          </View>
+        <View style={styles.bottom}>
+          <SafeAreaView>
+            <ScrollView>
+              <FlatList data={this.state.allsubject} renderItem={this.renderItem} />
+            </ScrollView>
+          </SafeAreaView>
         </View>
       </View>
-      <View style={styles.bottom}>
-        <SafeAreaView>
-          <ScrollView></ScrollView>
-        </SafeAreaView>
-      </View>
-    </View>
-  );
-};
-
+    );
+  }
+}
 const styles = StyleSheet.create({
   container: {
-    flex: 8,
+    flex: 4,
     backgroundColor: "white",
   },
   top: {
     flex: 1.5,
   },
-  mid: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: 20,
-  },
   bottom: {
-    alignItems: "flex-end",
+    alignItems: "center",
     flex: 3,
     backgroundColor: "#E5CCFF",
   },
   header: {
     fontSize: 35,
-    marginTop: "7%",
-    marginLeft: "5%",
+    marginTop: "1%",
+    marginLeft: "13%",
   },
   input: {
     borderRadius: 10,
@@ -111,7 +206,7 @@ const styles = StyleSheet.create({
   pic: {
     width: "40%",
     height: "100%",
-    marginLeft: "9%",
+    marginLeft: "4%",
     marginTop: "5%",
     borderRadius: 15,
   },
@@ -122,19 +217,42 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 15,
   },
-  details: {
-    backgroundColor: "purple",
-    width: 400,
-    height: 100,
-    borderRadius: 15,
-    marginVertical: 5,
-  },
+
   subject: {
     fontSize: 15,
     marginTop: 6,
     marginLeft: 30,
     color: "white",
   },
+  head:{
+    marginTop:30,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  details: {
+    backgroundColor: "white",
+    width: 380,
+    height: 150,
+    borderRadius: 15,
+    marginTop:30
+    
+  },
+  aboutsubject:{
+    margin: 12,
+    width:240,
+    height:180,
+    backgroundColor:"purple",
+    borderRadius:15,
+    marginTop:40
+  },
+  abouttext: {
+    color:"white",
+    fontSize:16,
+    marginVertical:3,
+    marginLeft:5
+  }
 });
 
 export default Subject;
+

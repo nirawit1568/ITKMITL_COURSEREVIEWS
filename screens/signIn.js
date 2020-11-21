@@ -10,7 +10,7 @@ import {
   Alert,
 } from "react-native";
 
-import ImgSignIn from "../assets/SignIn.png";
+import ImgSignIn from "../assets/signin.png";
 
 import * as firebase from "firebase";
 
@@ -40,9 +40,13 @@ const SignIn = (props) => {
       .auth()
       .signInWithEmailAndPassword(isUsername, isPassword)
       .then((res) => {
-        console.log(res["user"]["uid"]);
         console.log("User logged-in successfully!");
         props.onStartApp(1);
+      })
+      .catch((error) => {
+        //error callback
+        Alert.alert("Email or password was wrong")
+        console.log("error ", error);
       });
   };
 
@@ -58,13 +62,13 @@ const SignIn = (props) => {
       <Image style={styles.img} source={ImgSignIn} />
       <TextInput
         style={styles.box}
-        placeholder="Username"
+        placeholder="email @it.kmitl.ac.th"
         onChangeText={(text) => setUsername(text)}
       />
       <TextInput
         secureTextEntry={true}
         style={styles.box}
-        placeholder="Password"
+        placeholder="password"
         onChangeText={(text) => setPassword(text)}
       />
       <Button

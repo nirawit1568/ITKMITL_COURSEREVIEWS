@@ -10,8 +10,10 @@ import {
 } from "react-native";
 
 import * as firebase from "firebase";
-
+import backlogo from "../assets/back.png";
 import ImgSignUp from "../assets/SignUp.png";
+import SignIn from "./signIn";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 var firebaseConfig = {
   apiKey: "AIzaSyBl1cjx2N5tP2vx70kGcmVd7-dnKTRmWdE",
@@ -40,11 +42,12 @@ const SignUp = (props) => {
         .auth()
         .createUserWithEmailAndPassword(isEmail, isPassword)
         .then(() => {
+          Alert.alert("registered successfully!");
+          props.onStartApp(0);
           console.log("User registered successfully!");
         })
         .then((data) => {
           //success callback
-          props.onStartApp(0);
           console.log("data ", data);
         })
         .catch((error) => {
@@ -55,15 +58,24 @@ const SignUp = (props) => {
       Alert.alert("ConfirmPassword was wrong");
     }
   };
+  const back = () => {
+    props.onStartApp(0);
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 50 }}>SignIn</Text>
+      <View style={styles.head}>
+        <TouchableOpacity onPress={back}>
+          <Image source ={backlogo} style={{width:50,height:50}}/>
+        </TouchableOpacity>
+        <Text style={{ fontSize: 50 }}>SignUp</Text>
+      </View>
+      
       <Image style={styles.img} source={ImgSignUp} />
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <Text style={{ fontSize: 20 }}>Email(@it) </Text>
-        <TextInput style={styles.box} onChangeText={(text) => setEmail(text)} />
+        <TextInput style={styles.box} placeholder="@it.kmitl.ac.th" onChangeText={(text) => setEmail(text)} />
       </View>
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -71,6 +83,7 @@ const SignUp = (props) => {
         <TextInput
           style={styles.box}
           secureTextEntry={true}
+          placeholder="more than 6 characters"
           onChangeText={(text) => setPassword(text)}
         />
       </View>
@@ -80,6 +93,7 @@ const SignUp = (props) => {
         <TextInput
           style={styles.box}
           secureTextEntry={true}
+          placeholder="more than 6 characters"
           onChangeText={(text) => setConfirmPassword(text)}
         />
       </View>
@@ -107,6 +121,11 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "22%",
   },
+  head: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  }
 });
 
 export default SignUp;

@@ -13,7 +13,7 @@ import {
   FlatList,
 } from "react-native";
 
-import pic from "../assets/signin.png";
+import pic from "../assets/home.png";
 import logout from "../assets/SignOut.png";
 import * as firebase from "firebase";
 
@@ -34,7 +34,6 @@ if (firebase.apps.length == 0) {
 
 class Home extends React.Component {
   constructor(props) {
-    console.log(props.subject);
     super(props);
     this.state = {
       text: "",
@@ -43,7 +42,8 @@ class Home extends React.Component {
       status_search: false,
       std_id: props.std_id,
       subjectid: props.subject,
-      logout: props.onStartApp,
+      tosubject: props.onStartApp,
+      logout: props.onStartApp
     };
   }
 
@@ -61,7 +61,7 @@ class Home extends React.Component {
 
   onPressTo = (id) => {
     this.state.subjectid(id);
-    this.state.logout(3);
+    this.state.tosubject(3);
   };
 
   //renderItem from Flatlist
@@ -77,6 +77,9 @@ class Home extends React.Component {
     );
   };
 
+  logout = () => {
+    this.state.logout(0);
+  }
   //when search
   search = () => {
     var data = this.state.subject;
@@ -100,18 +103,16 @@ class Home extends React.Component {
         <View style={styles.top}>
           <View style={{ flexDirection: "row" }}>
             <View style={{ flex: 0.8 }}>
-              <Text style={styles.header}>Hi, {this.state.std_id}</Text>
+              <Text style={styles.header}>Hi</Text>
               <Text style={{ marginLeft: "5%", fontSize: 20 }}>
                 Find a course you want to see
               </Text>
             </View>
             <View style={{ flex: 0.2, marginTop: "6%" }}>
               <TouchableOpacity
-                onPress={() => {
-                  this.state.logout(false);
-                }}
+                onPress={this.logout}
               >
-                <Image source={logout}></Image>
+                <Image source={logout} style={{width:60,height:55,marginTop:15,marginLeft:20}}></Image>
               </TouchableOpacity>
             </View>
           </View>
@@ -150,6 +151,9 @@ const styles = StyleSheet.create({
   },
   top: {
     flex: 4,
+    height:"90%",
+    width:"90%",
+    marginLeft:25
   },
   mid: {
     flex: 1,
@@ -175,9 +179,9 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   pic: {
-    width: "80%",
+    width: "100%",
     height: "70%",
-    marginLeft: "9%",
+
     marginTop: "5%",
     borderRadius: 15,
   },
