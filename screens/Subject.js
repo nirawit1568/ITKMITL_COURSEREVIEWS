@@ -146,13 +146,13 @@ class Subject extends React.Component {
           <View style={{ flexDirection: "row" }}>
             <View style={styles.head}>
               <TouchableOpacity onPress={this.back}>
-                <Image source={backlogo} style={{width:50,height:50,marginLeft:20}}/>
+                <Image source={backlogo} style={{width:40,height:40,marginLeft:20}}/>
               </TouchableOpacity>
               <Text style={styles.header}>About Subject</Text>
               <TouchableOpacity
                 onPress={this.logout}
               >
-                <Image source={signout} style={{width:60,height:55,marginTop:10,marginLeft:60}}></Image>
+                <Image source={signout} style={{width:50,height:45,marginTop:10,marginLeft:65}}></Image>
               </TouchableOpacity>
             </View>
           </View>
@@ -184,16 +184,17 @@ const styles = StyleSheet.create({
   },
   top: {
     flex: 1.5,
+  
   },
   bottom: {
     alignItems: "center",
     flex: 3,
-    backgroundColor: "#E5CCFF",
+    backgroundColor: "#e6e6fb",
   },
   header: {
-    fontSize: 35,
+    fontSize: 33,
     marginTop: "1%",
-    marginLeft: "13%",
+    marginLeft: "14%",
   },
   input: {
     borderRadius: 10,
@@ -204,10 +205,10 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   pic: {
-    width: "40%",
+    width: "35%",
     height: "100%",
-    marginLeft: "4%",
-    marginTop: "5%",
+    // marginLeft: "6%",
+    marginTop: "10%",
     borderRadius: 15,
   },
   btn: {
@@ -232,25 +233,29 @@ const styles = StyleSheet.create({
   },
   details: {
     backgroundColor: "white",
-    width: 380,
+    width: 440,
     height: 150,
     borderRadius: 15,
-    marginTop:30
+    marginTop:30,
+    justifyContent: "center"
+    
     
   },
   aboutsubject:{
     margin: 12,
-    width:240,
-    height:180,
-    backgroundColor:"purple",
+    width:290,
+    height:170,
+    backgroundColor:"#5a3fc0",
     borderRadius:15,
-    marginTop:40
+    marginTop:60,
+    justifyContent: "center"
   },
   abouttext: {
     color:"white",
-    fontSize:16,
+    fontSize:14,
     marginVertical:3,
-    marginLeft:5
+    marginLeft:10,
+    
   }
 });
 

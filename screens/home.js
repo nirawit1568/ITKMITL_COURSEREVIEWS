@@ -16,6 +16,7 @@ import {
 import pic from "../assets/home.png";
 import logout from "../assets/SignOut.png";
 import * as firebase from "firebase";
+import picstar from "../assets/star2.png";
 
 var firebaseConfig = {
   apiKey: "AIzaSyBl1cjx2N5tP2vx70kGcmVd7-dnKTRmWdE",
@@ -67,6 +68,7 @@ class Home extends React.Component {
   //renderItem from Flatlist
   renderItem = (item) => {
     return (
+      
       <TouchableOpacity style={styles.details} onPress={() => this.onPressTo(item.item.subject_id)} >
         <Text style={styles.subject}>
           {"รหัสวิชา : " + item.item.subject_id}
@@ -104,7 +106,7 @@ class Home extends React.Component {
           <View style={{ flexDirection: "row" }}>
             <View style={{ flex: 0.8 }}>
               <Text style={styles.header}>Hi</Text>
-              <Text style={{ marginLeft: "5%", fontSize: 20 }}>
+              <Text style={{ marginLeft: "5%", fontSize: 20, color:"#4f3558"}}>
                 Find a course you want to see
               </Text>
             </View>
@@ -112,7 +114,7 @@ class Home extends React.Component {
               <TouchableOpacity
                 onPress={this.logout}
               >
-                <Image source={logout} style={{width:60,height:55,marginTop:15,marginLeft:20}}></Image>
+                <Image source={logout} style={{width:50,height:45,marginTop:27,marginLeft:34}}></Image>
               </TouchableOpacity>
             </View>
           </View>
@@ -127,8 +129,10 @@ class Home extends React.Component {
           <TouchableOpacity style={styles.btn} onPress={this.search}>
             <Text style={{ textAlign: "center", marginTop: 10 }}>Search</Text>
           </TouchableOpacity>
+          
         </View>
         <View style={styles.bottom}>
+          
           <ScrollView>
             {this.state.status_search == true ? (
               <FlatList data={this.state.search} renderItem={this.renderItem} />
@@ -167,16 +171,19 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 35,
-    marginTop: "7%",
+    marginTop: "13%",
     marginLeft: "5%",
+    fontWeight: "bold",
+    color: "#4f3558"
+    
   },
   input: {
     borderRadius: 10,
-    height: "35%",
-    width: "70%",
+    height: "39%",
+    width: "68%",
     backgroundColor: "#E0E0E0",
     textAlign: "center",
-    marginLeft: 15,
+    marginLeft: 16,
   },
   pic: {
     width: "100%",
@@ -186,18 +193,20 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   btn: {
-    height: "35%",
-    width: "15%",
-    backgroundColor: "gold",
+    height: "37%",
+    width: "20%",
+    backgroundColor: "#FFCB3E",
     borderRadius: 10,
     marginRight: 15,
   },
   details: {
-    backgroundColor: "purple",
-    width: 400,
-    height: 100,
-    borderRadius: 15,
+    backgroundColor: "#5a3fc0",
+    width: 430,
+    height: 110,
+    borderRadius: 14,
     marginVertical: 5,
+    marginRight: "5%",
+    justifyContent: "center"
   },
   subject: {
     fontSize: 15,
@@ -205,5 +214,9 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     color: "white",
   },
+  picstar: {
+    width: 40,
+    height:40
+  }
 });
 export default Home;
