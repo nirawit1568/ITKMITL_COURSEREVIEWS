@@ -57,7 +57,7 @@ const SignIn = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header1}>SignIn</Text>
+      <Text style={styles.header1}>SIGN IN</Text>
       <Text style={styles.header2}>IT KMITL COURSE REVIEW</Text>
       <Image style={styles.img} source={ImgSignIn} />
       <TextInput
@@ -71,14 +71,16 @@ const SignIn = (props) => {
         placeholder="password"
         onChangeText={(text) => setPassword(text)}
       />
+      <View style={styles.btn}>
       <Button
-        style={styles.btn}
+        // style={styles.btn}
         title="Login"
-        color="gold"
+        color="#FFCB3E"
         onPress={() => onPressSignIn()}
       />
+      </View>
       <TouchableOpacity onPress={() => onPressSignUp()}>
-        <Text style={{ color: "white", fontSize: 15 }}>Register</Text>
+        <Text style={{ color: "white", fontSize: 15, marginTop: "6%"}}>Don't have an account ? <Text style={{ color: "#4f3558", fontSize: 17, }}> Register</Text></Text>
       </TouchableOpacity>
     </View>
   );
@@ -88,26 +90,40 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-evenly",
+    // justifyContent: "space-evenly",
     backgroundColor: "#E5CCFF",
   },
   header1: {
     fontSize: 50,
+    // marginRight: "58%",
+    marginTop: "10%",
+    fontWeight: "bold",
+    color: "#4f3558"
   },
   header2: {
-    fontSize: 30,
+    fontSize: 21,
+    // marginRight: "28%",
+    marginTop: "4%",
+    color: "#693b69"
+  },
+  btn:{
+    marginTop: "9%",
+    width: 130,
+    
   },
   box: {
-    borderWidth: 0.5,
-    borderRadius: 15,
+    // borderWidth: 0.5,
+    borderRadius: 23,
     height: 50,
-    width: 300,
+    width: 350,
     backgroundColor: "white",
     textAlign: "center",
+    marginTop: "6%"
   },
   img: {
     width: "70%",
     height: "40%",
+    marginTop: "6%",
   },
 });
 
