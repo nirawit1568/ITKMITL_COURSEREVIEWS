@@ -171,7 +171,7 @@ class Subject extends React.Component {
         <View style={styles.bottom}>
         <View style={{ flexDirection: "row", alignItems: "center", height: "22%", }}>
             <View style={styles.aboutsubject}>
-              <Text style={{fontSize :27,marginVertical:3,marginLeft:15, fontWeight: "bold", color:"#202937", marginTop: 120, marginBottom:20, textAlign: "center"}}>{this.state.subject_name}</Text>
+              <Text style={{fontSize :24,marginVertical:3,marginLeft:15, fontWeight: "bold", color:"#202937", marginTop: 120, marginBottom:20, textAlign: "center"}}>{this.state.subject_name}</Text>
               <Text style={styles.abouttext}>รหัสวิชา : {this.state.subject_id}</Text>
               <Text style={styles.abouttext}>คณะ : เทคโนโลยีสารสนเทศ </Text>
               <Text style={styles.abouttext}>รายละเอียดวิชา : {this.state.description}</Text>
@@ -197,8 +197,8 @@ const styles = StyleSheet.create({
     flex: 4,
     backgroundColor: "white",
     // borderRadius: 50,
-    borderTopEndRadius: 60,
-    borderTopStartRadius: 60,
+    borderTopEndRadius: 50,
+    borderTopStartRadius: 50,
     marginTop:30,
     
   },

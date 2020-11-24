@@ -129,9 +129,7 @@ class Comments extends React.Component{
               </TouchableOpacity>
             </View>
 
-              <View style={styles.Comments_title}>
-                <Text style={styles.title}>Comments</Text>
-              </View>
+              
               
               <View style={styles.mid} >
                 <ScrollView>
@@ -202,14 +200,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  Comments_title: {
-    marginTop: "6%",
-    backgroundColor:"#FFE4B5",
-    borderRadius:10,
-    width:"100%",
-    height:"5%",
-    alignItems:"center"
-  },
+  
   title: {
     fontSize: 36,
   },
@@ -225,7 +216,11 @@ const styles = StyleSheet.create({
     flex:6,
     backgroundColor:"#FFE4B5",
     width:"100%",
-    height:"100%"
+    height:"100%",
+    marginTop:30,
+    borderTopEndRadius: 60,
+    borderTopStartRadius: 50,
+    
   },
   bottom: {
     width:"100%",
@@ -241,7 +236,8 @@ const styles = StyleSheet.create({
     width: 420,
     height: 80,
     borderRadius: 15,
-    marginVertical:10
+    marginVertical:10,
+    marginTop:50
 
   },
   subject: {
