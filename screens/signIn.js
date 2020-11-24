@@ -31,12 +31,13 @@ if (firebase.apps.length === 0) {
 }
 
 const SignIn = (props) => {
-  const [isUsername, setUsername] = useState();
-  const [isPassword, setPassword] = useState();
+  const [isUsername, setUsername] = useState('');
+  const [isPassword, setPassword] = useState('');
 
   //When press login button
   const onPressSignIn = () => {
-    firebase
+    if(isUsername.length > 0 && isPassword.length>0){
+          firebase
       .auth()
       .signInWithEmailAndPassword(isUsername, isPassword)
       .then((res) => {
@@ -48,6 +49,11 @@ const SignIn = (props) => {
         Alert.alert("Email or password was wrong")
         console.log("error ", error);
       });
+    }
+    else {
+      Alert.alert("Please enter email and password.")
+    }
+
   };
 
   //when press register
@@ -57,7 +63,7 @@ const SignIn = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header1}>SIGN IN</Text>
+      <Text style={styles.header1}>SIGN <Text style={styles.header3}>IN</Text></Text>
       <Text style={styles.header2}>IT KMITL COURSE REVIEW</Text>
       <Image style={styles.img} source={ImgSignIn} />
       <TextInput
@@ -75,13 +81,15 @@ const SignIn = (props) => {
       <Button
         // style={styles.btn}
         title="Login"
-        color="#FFCB3E"
+        color="#16a588"
         onPress={() => onPressSignIn()}
       />
       </View>
+      <Text style={{ color: "white", fontSize: 17, marginTop: "6%"}}>Don't have an account ?
       <TouchableOpacity onPress={() => onPressSignUp()}>
-        <Text style={{ color: "white", fontSize: 15, marginTop: "6%"}}>Don't have an account ? <Text style={{ color: "#4f3558", fontSize: 17, }}> Register</Text></Text>
+        <Text style={{ color: "#dd544c", fontSize: 17}}> Register</Text>
       </TouchableOpacity>
+      </Text>
     </View>
   );
 };
@@ -91,39 +99,42 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     // justifyContent: "space-evenly",
-    backgroundColor: "#E5CCFF",
+    backgroundColor: "#371741",
   },
   header1: {
-    fontSize: 50,
+    fontSize: 55,
     // marginRight: "58%",
     marginTop: "10%",
     fontWeight: "bold",
-    color: "#4f3558"
+    color: "#f0c15e"
   },
   header2: {
     fontSize: 21,
     // marginRight: "28%",
     marginTop: "4%",
-    color: "#693b69"
+    color: "white"
+  },
+  header3:{
+    color: "#dd544c"
   },
   btn:{
     marginTop: "9%",
-    width: 130,
+    width: 150,
     
   },
   box: {
     // borderWidth: 0.5,
     borderRadius: 23,
     height: 50,
-    width: 350,
+    width: 360,
     backgroundColor: "white",
     textAlign: "center",
-    marginTop: "6%"
+    marginTop: "5%"
   },
   img: {
-    width: "70%",
-    height: "40%",
-    marginTop: "6%",
+    width: "72%",
+    height: "42%",
+    marginTop: "4%",
   },
 });
 

@@ -66,14 +66,15 @@ const SignUp = (props) => {
     <View style={styles.container}>
       <View style={styles.head}>
         <TouchableOpacity onPress={back}>
-          <Image source ={backlogo} style={{width:50,height:50}}/>
+          <Image source ={backlogo} style={{width:45,height:40, }}/>
         </TouchableOpacity>
-        <Text style={{ fontSize: 50 }}>SignUp</Text>
+        <Text style={{ fontSize: 40, color: "white" }}>Sign Up</Text>
       </View>
       
       <Image style={styles.img} source={ImgSignUp} />
 
       <View style={{ flexDirection: "row", alignItems: "center" }}>
+
         <Text style={{ fontSize: 20 }}>Email(@it) </Text>
         <TextInput style={styles.box} placeholder="@it.kmitl.ac.th" onChangeText={(text) => setEmail(text)} />
       </View>
@@ -107,13 +108,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
-    backgroundColor: "#E5CCFF",
+    backgroundColor: "#371741",
   },
   box: {
     borderWidth: 0.5,
     borderRadius: 15,
     height: 50,
-    width: 200,
+    width: 250,
     backgroundColor: "white",
     textAlign: "center",
   },
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+    marginRight: "60%",
   }
 });
 
