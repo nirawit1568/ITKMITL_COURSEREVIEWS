@@ -16,7 +16,6 @@ import * as firebase from "firebase";
 import pic from "../assets/รูปภาพ3.png";
 import backlogo from "../assets/back.png"
 import signout from "../assets/SignOut.png";
-import { render } from "react-dom";
 import boy from "../assets/boy.png";
 import girl from "../assets/woman.png"
 
@@ -100,6 +99,7 @@ class Subject extends React.Component {
       //render subject for 1 teacher
       if(item.item.teacher.length == 1){
         return(
+          <View style={styles.teacher} >
           <TouchableOpacity style={styles.details} onPress={() => this.teacher_select(item.item.teacher[0].name)}>
             <View style={{flexDirection:"row",alignItems:"center"}}>
               <Image source={boy} style={{width:120,height:140}}></Image>
@@ -109,15 +109,16 @@ class Subject extends React.Component {
                 </View>
             </View>
           </TouchableOpacity>
+          </View>
         )
       }
       //render subject for 2 teachers
       else if(item.item.teacher.length == 2){
         return(
-        <View>
+        <View style={styles.teacher} >
           <TouchableOpacity style={styles.details} onPress={() => this.teacher_select(item.item.teacher[0].name)}>
           <View style={{flexDirection:"row",alignItems:"center"}}>
-              <Image source={boy} style={{width:120,height:140}}></Image>
+              <Image source={boy} style={{width:90,height:110}}></Image>
                 <View style={{flexDirection:"column"}}>
                   <Text style={{fontSize:17,width:"65%",marginVertical:10}}>{"อาจารย์ : " + item.item.teacher[0].name}</Text>
                   <Text style={{fontSize:17,width:"65%"}}>{"คะแนน : "+ (score1/item.item.teacher[0].score.length).toFixed(1) +"/5.0"}</Text>
@@ -126,7 +127,7 @@ class Subject extends React.Component {
           </TouchableOpacity>
           <TouchableOpacity style={styles.details} onPress={() => this.teacher_select(item.item.teacher[1].name)}>
           <View style={{flexDirection:"row",alignItems:"center"}}>
-              <Image source={girl} style={{width:120,height:140}}></Image>
+              <Image source={girl} style={{width:90,height:110}}></Image>
                 <View style={{flexDirection:"column"}}>
                   <Text style={{fontSize:17,width:"65%",marginVertical:10}}>{"อาจารย์ : " + item.item.teacher[1].name}</Text>
                   <Text style={{fontSize:17,width:"65%"}}>{"คะแนน : "+ (score2/item.item.teacher[1].score.length).toFixed(1) +"/5.0"}</Text>
@@ -145,18 +146,19 @@ class Subject extends React.Component {
         <View style={styles.top}>
           <View style={{ flexDirection: "row" }}>
             <View style={styles.head}>
-              <TouchableOpacity onPress={this.back}>
-                <Image source={backlogo} style={{width:40,height:40,marginLeft:20}}/>
+            <TouchableOpacity onPress={this.back}>
+                <Image source={backlogo} style={{width:40,height:40,marginTop:10,marginRight:50,marginLeft:12}}/>
               </TouchableOpacity>
               <Text style={styles.header}>About Subject</Text>
               <TouchableOpacity
                 onPress={this.logout}
               >
-                <Image source={signout} style={{width:50,height:45,marginTop:10,marginLeft:65}}></Image>
+                <Image source={signout} style={{width:45,height:40,marginTop:10,marginLeft:75}}></Image>
               </TouchableOpacity>
+             
             </View>
           </View>
-          <View style={{ flexDirection: "row", alignItems: "center", height: "60%", }}>
+          {/* <View style={{ flexDirection: "row", alignItems: "center", height: "60%", }}>
             <Image style={styles.pic} source={pic}></Image>
             <View style={styles.aboutsubject}>
               <Text style={styles.abouttext}>รหัสวิชา : {this.state.subject_id}</Text>
@@ -164,9 +166,17 @@ class Subject extends React.Component {
               <Text style={styles.abouttext}>คณะ : เทคโนโลยีสารสนเทศ </Text>
               <Text style={styles.abouttext}>รายละเอียดวิชา : {this.state.description}</Text>
             </View>
-          </View>
+          </View> */}
         </View>
         <View style={styles.bottom}>
+        <View style={{ flexDirection: "row", alignItems: "center", height: "22%", }}>
+            <View style={styles.aboutsubject}>
+              <Text style={{fontSize :27,marginVertical:3,marginLeft:15, fontWeight: "bold", color:"#202937", marginTop: 120, marginBottom:20, textAlign: "center"}}>{this.state.subject_name}</Text>
+              <Text style={styles.abouttext}>รหัสวิชา : {this.state.subject_id}</Text>
+              <Text style={styles.abouttext}>คณะ : เทคโนโลยีสารสนเทศ </Text>
+              <Text style={styles.abouttext}>รายละเอียดวิชา : {this.state.description}</Text>
+            </View>
+          </View>
           <SafeAreaView>
             <ScrollView>
               <FlatList data={this.state.allsubject} renderItem={this.renderItem} />
@@ -180,21 +190,23 @@ class Subject extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 4,
-    backgroundColor: "white",
-  },
-  top: {
-    flex: 1.5,
-  
+    backgroundColor: "#3e1a4a",
   },
   bottom: {
     alignItems: "center",
-    flex: 3,
-    backgroundColor: "#e6e6fb",
+    flex: 4,
+    backgroundColor: "white",
+    // borderRadius: 50,
+    borderTopEndRadius: 60,
+    borderTopStartRadius: 60,
+    marginTop:30,
+    
   },
   header: {
     fontSize: 33,
-    marginTop: "1%",
-    marginLeft: "14%",
+    marginTop: "2%",
+    marginLeft: "8%",
+    color: "white"
   },
   input: {
     borderRadius: 10,
@@ -232,30 +244,42 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   details: {
-    backgroundColor: "white",
-    width: 440,
-    height: 150,
-    borderRadius: 15,
-    marginTop:30,
-    justifyContent: "center"
+    backgroundColor: "#dccff5",
+    width: 370,
+    height: 140,
+    borderRadius: 30,
+    marginTop:35,
+    justifyContent: "center",
+    marginTop: 35,
+    borderColor: "#a696e2",
+    borderWidth:  2.5,
     
-    
+
   },
   aboutsubject:{
     margin: 12,
     width:290,
     height:170,
-    backgroundColor:"#5a3fc0",
     borderRadius:15,
     marginTop:60,
-    justifyContent: "center"
+    justifyContent: "center",
+    marginBottom:20,
+    
   },
   abouttext: {
-    color:"white",
+    color:"#606366",
     fontSize:14,
     marginVertical:3,
     marginLeft:10,
+    textAlign: "center"
     
+  },
+  // backout: {
+  //   flexDirection: "row",
+  //   marginLeft:100,
+  // },
+  teacher:{
+    marginTop: "33%",
   }
 });
 

@@ -10,7 +10,7 @@ import {
   Alert,
 } from "react-native";
 
-import ImgSignIn from "../assets/signin.png";
+import ImgSignIn from "../assets/SignIn.png";
 
 import * as firebase from "firebase";
 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     // justifyContent: "space-evenly",
-    backgroundColor: "#371741",
+    backgroundColor: "#43254c",
   },
   header1: {
     fontSize: 55,

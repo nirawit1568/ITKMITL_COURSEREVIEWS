@@ -17,7 +17,6 @@ import pic from "../assets/home.png";
 import logout from "../assets/SignOut.png";
 import * as firebase from "firebase";
 
-
 var firebaseConfig = {
   apiKey: "AIzaSyBl1cjx2N5tP2vx70kGcmVd7-dnKTRmWdE",
   authDomain: "coursereview-itkmitl.firebaseapp.com",
@@ -105,10 +104,8 @@ class Home extends React.Component {
         <View style={styles.top}>
           <View style={{ flexDirection: "row" }}>
             <View style={{ flex: 0.8 }}>
-              <Text style={styles.header}>Hi</Text>
-              <Text style={{ marginLeft: "5%", fontSize: 20, color:"#4f3558"}}>
-                Find a course you want to see
-              </Text>
+              <Text style={styles.header}>Find a course you want to see</Text>
+              
             </View>
             <View style={{ flex: 0.2, marginTop: "6%" }}>
               <TouchableOpacity
@@ -127,7 +124,7 @@ class Home extends React.Component {
             onChangeText={(text) => this.setState({ text })}
           ></TextInput>
           <TouchableOpacity style={styles.btn} onPress={this.search}>
-            <Text style={{ textAlign: "center", marginTop: 10 }}>Search</Text>
+            <Text style={{ textAlign: "center", marginTop: 10, color: "white", fontWeight: "bold"}}>Search</Text>
           </TouchableOpacity>
           
         </View>
@@ -174,39 +171,41 @@ const styles = StyleSheet.create({
     marginTop: "13%",
     marginLeft: "5%",
     fontWeight: "bold",
-    color: "#4f3558"
+    color: "#34143d"
     
   },
   input: {
     borderRadius: 10,
     height: "39%",
-    width: "68%",
+    width: "67%",
     backgroundColor: "#E0E0E0",
     textAlign: "center",
     marginLeft: 16,
+    marginTop: 25
   },
   pic: {
     width: "100%",
     height: "70%",
-
     marginTop: "5%",
     borderRadius: 15,
   },
   btn: {
     height: "37%",
     width: "20%",
-    backgroundColor: "#FFCB3E",
+    backgroundColor: "#16a588",
     borderRadius: 10,
     marginRight: 15,
+    marginTop: 25,
   },
   details: {
-    backgroundColor: "#5a3fc0",
+    backgroundColor: "#43254c",
     width: 430,
     height: 110,
-    borderRadius: 14,
+    borderRadius: 11,
     marginVertical: 5,
     marginRight: "5%",
     justifyContent: "center"
+    
   },
   subject: {
     fontSize: 15,
@@ -214,9 +213,6 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     color: "white",
   },
-  picstar: {
-    width: 40,
-    height:40
-  }
+  
 });
 export default Home;
