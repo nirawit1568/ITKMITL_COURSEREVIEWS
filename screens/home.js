@@ -17,7 +17,6 @@ import pic from "../assets/home.png";
 import logout from "../assets/SignOut.png";
 import * as firebase from "firebase";
 
-
 var firebaseConfig = {
   apiKey: "AIzaSyBl1cjx2N5tP2vx70kGcmVd7-dnKTRmWdE",
   authDomain: "coursereview-itkmitl.firebaseapp.com",
