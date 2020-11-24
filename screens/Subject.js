@@ -149,7 +149,7 @@ class Subject extends React.Component {
             <TouchableOpacity onPress={this.back}>
                 <Image source={backlogo} style={{width:40,height:40,marginTop:10,marginRight:50,marginLeft:12}}/>
               </TouchableOpacity>
-              <Text style={styles.header}>About Subject</Text>
+              <Text style={styles.header}>About <Text style={styles.header1}>Subject</Text></Text>
               <TouchableOpacity
                 onPress={this.logout}
               >
@@ -206,7 +206,12 @@ const styles = StyleSheet.create({
     fontSize: 33,
     marginTop: "2%",
     marginLeft: "8%",
-    color: "white"
+    color: "#f0c15e",
+    fontWeight: "bold"
+  },
+  header1: {
+    
+    color: "#dd544c",
   },
   input: {
     borderRadius: 10,

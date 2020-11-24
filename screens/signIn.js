@@ -46,7 +46,7 @@ const SignIn = (props) => {
       })
       .catch((error) => {
         //error callback
-        Alert.alert("Email or password was wrong")
+        Alert.alert("Email or password was wrong");
         console.log("error ", error);
       });
     }
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   header3:{
     color: "#dd544c"
   },
-  btn:{
+  btn: {
     marginTop: "9%",
     width: 150,
     

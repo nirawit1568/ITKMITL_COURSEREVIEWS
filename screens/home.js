@@ -13,7 +13,7 @@ import {
   FlatList,
 } from "react-native";
 
-import pic from "../assets/home.png";
+import pic from "../assets/Home.png";
 import logout from "../assets/SignOut.png";
 import * as firebase from "firebase";
 
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     marginTop: "13%",
     marginLeft: "5%",
     fontWeight: "bold",
-    color: "#34143d"
+    color: "#34143d",
     
   },
   input: {
