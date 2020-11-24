@@ -13,7 +13,7 @@ import {
   FlatList,
 } from "react-native";
 
-import pic from "../assets/home.png";
+import pic from "../assets/Home.png";
 import logout from "../assets/SignOut.png";
 import * as firebase from "firebase";
 

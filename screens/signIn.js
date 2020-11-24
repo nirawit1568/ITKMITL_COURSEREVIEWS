@@ -45,7 +45,7 @@ const SignIn = (props) => {
       })
       .catch((error) => {
         //error callback
-        Alert.alert("Email or password was wrong")
+        Alert.alert("Email or password was wrong");
         console.log("error ", error);
       });
   };
@@ -72,15 +72,18 @@ const SignIn = (props) => {
         onChangeText={(text) => setPassword(text)}
       />
       <View style={styles.btn}>
-      <Button
-        // style={styles.btn}
-        title="Login"
-        color="#FFCB3E"
-        onPress={() => onPressSignIn()}
-      />
+        <Button
+          // style={styles.btn}
+          title="Login"
+          color="#FFCB3E"
+          onPress={() => onPressSignIn()}
+        />
       </View>
       <TouchableOpacity onPress={() => onPressSignUp()}>
-        <Text style={{ color: "white", fontSize: 15, marginTop: "6%"}}>Don't have an account ? <Text style={{ color: "#4f3558", fontSize: 17, }}> Register</Text></Text>
+        <Text style={{ color: "white", fontSize: 15, marginTop: "6%" }}>
+          Don't have an account ?{" "}
+          <Text style={{ color: "#4f3558", fontSize: 17 }}> Register</Text>
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -98,18 +101,17 @@ const styles = StyleSheet.create({
     // marginRight: "58%",
     marginTop: "10%",
     fontWeight: "bold",
-    color: "#4f3558"
+    color: "#4f3558",
   },
   header2: {
     fontSize: 21,
     // marginRight: "28%",
     marginTop: "4%",
-    color: "#693b69"
+    color: "#693b69",
   },
-  btn:{
+  btn: {
     marginTop: "9%",
     width: 130,
-    
   },
   box: {
     // borderWidth: 0.5,
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
     width: 350,
     backgroundColor: "white",
     textAlign: "center",
-    marginTop: "6%"
+    marginTop: "6%",
   },
   img: {
     width: "70%",
