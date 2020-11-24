@@ -148,6 +148,8 @@ class Comments extends React.Component{
                 </ScrollView>                          
               </View>
 
+              
+              {this.state.button == true? (
               <View style={styles.bottom}>
                 <View style={{flexDirection:"row",marginTop:20,marginLeft:25}}>
                   <TextInput style={styles.box} placeholder="เขียนความคิดเห็น" onChangeText={(text) => this.setState({text:text})}></TextInput>
@@ -172,6 +174,11 @@ class Comments extends React.Component{
                   </View>
                 </View>
               </View>
+              ):(
+                <View></View>
+              )}
+
+              
           </View>
         )
     }
