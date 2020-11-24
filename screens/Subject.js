@@ -16,7 +16,6 @@ import * as firebase from "firebase";
 import pic from "../assets/รูปภาพ3.png";
 import backlogo from "../assets/back.png"
 import signout from "../assets/SignOut.png";
-import { render } from "react-dom";
 import boy from "../assets/boy.png";
 import girl from "../assets/woman.png"
 

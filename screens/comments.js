@@ -7,7 +7,6 @@ import back from "../assets/back.png";
 
 import * as firebase from "firebase";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
-import { render } from 'react-dom';
 
 var firebaseConfig = {
     apiKey: "AIzaSyBl1cjx2N5tP2vx70kGcmVd7-dnKTRmWdE",

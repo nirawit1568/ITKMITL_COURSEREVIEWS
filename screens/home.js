@@ -13,10 +13,9 @@ import {
   FlatList,
 } from "react-native";
 
-import pic from "../assets/home.png";
+import pic from "../assets/Home.png";
 import logout from "../assets/SignOut.png";
 import * as firebase from "firebase";
-import picstar from "../assets/star2.png";
 
 var firebaseConfig = {
   apiKey: "AIzaSyBl1cjx2N5tP2vx70kGcmVd7-dnKTRmWdE",

@@ -12,7 +12,6 @@ import {
 import * as firebase from "firebase";
 import backlogo from "../assets/back.png";
 import ImgSignUp from "../assets/SignUp.png";
-import SignIn from "./signIn";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 var firebaseConfig = {
