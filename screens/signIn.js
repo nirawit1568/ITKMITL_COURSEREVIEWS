@@ -37,18 +37,23 @@ const SignIn = (props) => {
   //When press login button
   const onPressSignIn = () => {
     if(isUsername.length > 0 && isPassword.length>0){
-          firebase
-      .auth()
-      .signInWithEmailAndPassword(isUsername, isPassword)
-      .then((res) => {
-        console.log("User logged-in successfully!");
-        props.onStartApp(1);
-      })
-      .catch((error) => {
-        //error callback
-        Alert.alert("Email or password was wrong");
-        console.log("error ", error);
-      });
+      if(isUsername.includes("@it.kmitl.ac.th")){
+        firebase
+        .auth()
+        .signInWithEmailAndPassword(isUsername, isPassword)
+        .then((res) => {
+          console.log("User logged-in successfully!");
+          props.onStartApp(1);
+        })
+        .catch((error) => {
+          //error callback
+          Alert.alert("Email or password was wrong")
+          console.log("error ", error);
+        });
+      }
+      else {
+        Alert.alert("Please enter email @it.kmitl.ac.th")
+      }
     }
     else {
       Alert.alert("Please enter email and password.")

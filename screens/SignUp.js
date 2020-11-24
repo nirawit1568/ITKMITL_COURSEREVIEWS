@@ -36,7 +36,8 @@ const SignUp = (props) => {
   const [isEmail, setEmail] = useState();
 
   const writeUserData = () => {
-    if (isPassword === isConfirmPassword) {
+    if (isEmail.includes("@it.kmitl.ac.th")){
+      if (isPassword === isConfirmPassword) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(isEmail, isPassword)
@@ -56,6 +57,10 @@ const SignUp = (props) => {
     } else {
       Alert.alert("ConfirmPassword was wrong");
     }
+}
+else{
+  Alert.alert("Please enter email @it.kmitl.ac.th")
+}
   };
   const back = () => {
     props.onStartApp(0);
