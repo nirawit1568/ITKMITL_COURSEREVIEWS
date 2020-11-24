@@ -102,7 +102,7 @@ class Subject extends React.Component {
           <View style={styles.teacher} >
           <TouchableOpacity style={styles.details} onPress={() => this.teacher_select(item.item.teacher[0].name)}>
             <View style={{flexDirection:"row",alignItems:"center"}}>
-              <Image source={boy} style={{width:120,height:140}}></Image>
+              <Image source={boy} style={{width:90,height:110}}></Image>
                 <View style={{flexDirection:"column"}}>
                   <Text style={{fontSize:17,width:"65%",marginVertical:10}}>{"อาจารย์ : " + item.item.teacher[0].name}</Text>
                   <Text style={{fontSize:17,width:"65%"}}>{"คะแนน : " + (score1/item.item.teacher[0].score.length).toFixed(1) + "/5.0"}</Text>
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   },
   aboutsubject:{
     margin: 12,
-    width:290,
+    width:380,
     height:170,
     borderRadius:15,
     marginTop:60,

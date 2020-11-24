@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image,Picker, Butt
 import pic from "../assets/send.png";
 import signout from "../assets/SignOut.png";
 import back from "../assets/back.png";
+import icon from "../assets/comment.png";
+import stu from "../assets/stud.jpg";
 
 import * as firebase from "firebase";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
@@ -117,25 +119,34 @@ class Comments extends React.Component{
           <View style={styles.container}>
             <View style={styles.head}>
               <TouchableOpacity onPress={()=>this.back()}>
-                <Image source={back} style={{width:50,height:50,marginLeft:10}}/>
+                <Image source={back} style={{width:40,height:40,marginLeft:10,marginTop:10}}/>
               </TouchableOpacity>
-              <View style={styles.info_subject}>
-                <Text style={styles.title_info}>รหัสวิชา : {this.state.subject_id}</Text>
-                <Text style={styles.title_info}>ชื่อวิชา : {this.state.subject_name}</Text>
-                <Text style={styles.title_info}>ชื่ออาจารย์ : {this.state.teacher_name}</Text>
+              <View style={{width:"50%",height:50,marginLeft:110}}>
+                <Text style={styles.title_Comments} >Comments</Text>
               </View>
               <TouchableOpacity onPress={()=>this.logout()}>
-                <Image source={signout} style={{width:60,height:55,marginTop:10}}></Image>
+                <Image source={signout} style={{width:50,height:45,marginLeft:10,marginTop:10}}></Image>
               </TouchableOpacity>
             </View>
-
-              
+            
+            
               
               <View style={styles.mid} >
+              {this.state.button == false? (
+              <View style={styles.info_subject}>
+              <Text style={{fontWeight:"bold", fontSize:25, color: "#272b2f", marginBottom:30}}>{this.state.subject_name}</Text>
+              <Text style={styles.title_info}>{this.state.subject_id}</Text>
+              <Text style={styles.title_info}>ชื่ออาจารย์ : {this.state.teacher_name}</Text>
+            </View>
+            ):(
+              <View></View>
+            )}
                 <ScrollView>
                   {this.state.button == false? (
-                    <TouchableOpacity style={{width:"30%",height:"100%",backgroundColor:"#9370DB",marginLeft:"35%",marginTop:"50%"}} onPress={()=>this.viewcomment()}>
-                        <Text style={{marginLeft:13,color:"white",fontSize:23}}>ดู comment</Text>
+                    <TouchableOpacity style={styles.seemore} onPress={()=>this.viewcomment()}>
+                      <Image source={icon} style={{width:45,height:40,marginTop:30}}></Image>
+                        <Text style={{marginLeft:12,color:"#202937",fontSize:20, textAlign: "center", fontWeight: "bold",marginTop:30}}>See Comments</Text>
+                        
                     </TouchableOpacity>
                   ):(
                     <FlatList data={this.state.comments} renderItem={this.renderItem} />
@@ -172,7 +183,7 @@ class Comments extends React.Component{
                 </View>
               </View>
               ):(
-                <View></View>
+                <Image source={stu} style={{width:460,height:435,marginTop:8,marginLeft:28}}></Image>
               )}
 
               
@@ -187,37 +198,42 @@ class Comments extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 8,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
   head:{
     flex:1,
-    marginRight:130,
-    marginTop:30,
-    width:"75%",
+    width:"100%",
     height:"100%",
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#3e1a4a",
+    borderBottomEndRadius: 40,
+    borderBottomStartRadius: 40
   },
   
   title: {
     fontSize: 36,
   },
   info_subject:{
-    width:"90%",
-    marginLeft:10,
+    
+    width:"80%",
+    marginLeft:30,
     marginRight:10,
+    marginTop:70,
+    textAlign: "center"
   },
   title_info: {
-    fontSize: 16,
+    fontSize: 20,
+    marginTop:10,
+    color: "#4f5459"
   },
   mid:{
-    flex:6,
-    backgroundColor:"#FFE4B5",
+    flex:4,
+    backgroundColor:"white",
     width:"100%",
     height:"100%",
-    marginTop:30,
     borderTopEndRadius: 60,
     borderTopStartRadius: 50,
     
@@ -226,23 +242,23 @@ const styles = StyleSheet.create({
     width:"100%",
     height:"100%",
     flexDirection:"column",
-    backgroundColor:"#FFE4B5",
-    flex: 2,
+    backgroundColor:"white",
+    flex: 1,
 
   },
   details: {
-    backgroundColor: "#DDA0DD",
+    backgroundColor: "#e8e1f4",
     marginLeft:35,
     width: 420,
-    height: 80,
-    borderRadius: 15,
+    height: 130,
+    borderRadius: 12,
     marginVertical:10,
-    marginTop:50
+    marginTop:50  
 
   },
   subject: {
     fontSize: 18,
-    color: "white",
+    color: "black",
     padding: "3%",
     
   },
@@ -250,7 +266,7 @@ const styles = StyleSheet.create({
     borderRadius:30,
     height: 60,
     width: 350,
-    backgroundColor: "white",
+    backgroundColor: "#f2f2f2",
     textAlign: "center",
     fontSize: 16,
   },
@@ -259,6 +275,24 @@ const styles = StyleSheet.create({
     height:65,
     marginLeft:10,
     marginRight:10,
+  },
+  seemore:{
+    backgroundColor: "white",
+    width: 240,
+    height: 90,
+    borderRadius: 22,
+    justifyContent: "center",
+    marginTop: 35,
+    borderColor: "#b2b2b2",
+    borderWidth:  1,
+    marginLeft: 30,
+    flexDirection:"row"
+  },
+  title_Comments:{
+    fontSize: 33,
+    // fontWeight:"bold",
+    marginTop:7,
+    color: "white"
   }
 
 });

@@ -65,21 +65,22 @@ const SignUp = (props) => {
     <View style={styles.container}>
       <View style={styles.head}>
         <TouchableOpacity onPress={back}>
-          <Image source ={backlogo} style={{width:45,height:40, }}/>
+          <Image source ={backlogo} style={{width:45,height:40, marginRight:100}}/>
         </TouchableOpacity>
-        <Text style={{ fontSize: 40, color: "white" }}>Sign Up</Text>
+        <Text style={styles.header1}>SIGN <Text style={styles.header3}>UP</Text></Text>
       </View>
       
+      
       <Image style={styles.img} source={ImgSignUp} />
+      <View style={styles.bottom}>
+      <View style={{ flexDirection: "row", alignItems: "center", marginTop:70}}>
 
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-
-        <Text style={{ fontSize: 20 }}>Email(@it) </Text>
+        <Text style={{ fontSize: 20, color:"white",marginRight:60 }}>Email(@it) </Text>
         <TextInput style={styles.box} placeholder="@it.kmitl.ac.th" onChangeText={(text) => setEmail(text)} />
       </View>
 
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <Text style={{ fontSize: 20 }}>Password </Text>
+      <View style={{ flexDirection: "row", alignItems: "center", marginTop:35}}>
+        <Text style={{ fontSize: 20,color:"white" ,marginRight:60}}>Password </Text>
         <TextInput
           style={styles.box}
           secureTextEntry={true}
@@ -88,8 +89,8 @@ const SignUp = (props) => {
         />
       </View>
 
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <Text style={{ fontSize: 20 }}>ConfirmPassword </Text>
+      <View style={{ flexDirection: "row", alignItems: "center", marginTop:35 }}>
+        <Text style={{ fontSize: 20 , color:"white"}}>ConfirmPassword </Text>
         <TextInput
           style={styles.box}
           secureTextEntry={true}
@@ -97,21 +98,27 @@ const SignUp = (props) => {
           onChangeText={(text) => setConfirmPassword(text)}
         />
       </View>
-      <Button title="Register" onPress={writeUserData} />
+      <View style={styles.btn}>
+      <Button title="Register"
+      color="#16a588"
+       onPress={writeUserData} />
+       </View>
+       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 4,
     alignItems: "center",
     justifyContent: "space-evenly",
-    backgroundColor: "#371741",
+    backgroundColor: "white",
   },
   box: {
     borderWidth: 0.5,
-    borderRadius: 15,
+    borderRadius: 25,
+    marginLeft:20,
     height: 50,
     width: 250,
     backgroundColor: "white",
@@ -119,14 +126,39 @@ const styles = StyleSheet.create({
   },
   img: {
     width: "100%",
-    height: "22%",
+    height: "25%",
   },
   head: {
+    flex:1,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    marginRight: "60%",
-  }
+    marginRight: "26%"
+    
+  },
+  btn: {
+    marginTop:70,
+    width: 150,
+  },
+  header1: {
+    fontSize: 55,
+    fontWeight: "bold",
+    color: "#f0c15e"
+  },
+  header3:{
+    color: "#dd544c"
+  },
+  bottom: {
+    alignItems: "center",
+    flex: 3,
+    width:"100%",
+    backgroundColor: "#43254c",
+    borderTopEndRadius: 50,
+    borderTopStartRadius: 50,
+    // marginTop:30,
+    
+  },
+  
 });
 
 export default SignUp;
