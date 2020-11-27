@@ -31,36 +31,42 @@ if (firebase.apps.length === 0) {
 }
 
 const SignUp = (props) => {
-  const [isPassword, setPassword] = useState();
-  const [isConfirmPassword, setConfirmPassword] = useState();
-  const [isEmail, setEmail] = useState();
+  const [isPassword, setPassword] = useState('');
+  const [isConfirmPassword, setConfirmPassword] = useState('');
+  const [isEmail, setEmail] = useState('');
 
   const writeUserData = () => {
-    if (isEmail.includes("@it.kmitl.ac.th")){
-      if (isPassword === isConfirmPassword) {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(isEmail, isPassword)
-        .then(() => {
-          Alert.alert("registered successfully!");
-          props.onStartApp(0);
-          console.log("User registered successfully!");
-        })
-        .then((data) => {
-          //success callback
-          console.log("data ", data);
-        })
-        .catch((error) => {
-          //error callback
-          console.log("error ", error);
-        });
-    } else {
-      Alert.alert("ConfirmPassword was wrong");
+    if(isEmail.length>0 && isPassword.length>0){
+        if (isEmail.includes("@it.kmitl.ac.th")){
+          if (isPassword === isConfirmPassword) {
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(isEmail, isPassword)
+            .then(() => {
+              Alert.alert("registered successfully!");
+              props.onStartApp(0);
+              console.log("User registered successfully!");
+            })
+            .then((data) => {
+              //success callback
+              console.log("data ", data);
+            })
+            .catch((error) => {
+              //error callback
+              console.log("error ", error);
+            });
+        } else {
+          Alert.alert("ConfirmPassword was wrong");
+        }
+      }
+      else{
+        Alert.alert("Please enter email @it.kmitl.ac.th")
+      }
     }
-}
-else{
-  Alert.alert("Please enter email @it.kmitl.ac.th")
-}
+    else{
+      Alert.alert("Please enter email and password")
+    }
+
   };
   const back = () => {
     props.onStartApp(0);

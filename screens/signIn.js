@@ -10,7 +10,7 @@ import {
   Alert,
 } from "react-native";
 
-import ImgSignIn from "../assets/SignIn.png";
+import ImgSignIn from "../assets/signin.png";
 
 import * as firebase from "firebase";
 

@@ -104,6 +104,7 @@ class Comments extends React.Component{
           }
         } 
       }
+    this.setState({button:false})
     }
 
     renderItem = (item) =>{
